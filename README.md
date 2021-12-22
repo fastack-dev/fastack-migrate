@@ -1,6 +1,7 @@
 # fastack-migrate
 
-fastack-migrate is a database migration tool for FastAPI.
+fastack-migrate is a database migration tool for [fastack](https://github.com/fastack-dev/fastack).
+
 This is a fork of [flask-migrate](https://github.com/miguelgrinberg/Flask-Migrate)!
 
 # Usage
