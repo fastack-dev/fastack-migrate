@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "fastack-migrate"
-version = "0.1.0"
-description = "WIP"
+version = "0.2.0"
+description = "Database migrations tool for Fastack"
 authors = ["aprilahijriyan <37798612+aprilahijriyan@users.noreply.github.com>"]
 license = "MIT"
 maintainers = ["aprilahijriyan <37798612+aprilahijriyan@users.noreply.github.com>"]
