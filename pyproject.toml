@@ -4,6 +4,25 @@ version = "0.1.0"
 description = "WIP"
 authors = ["aprilahijriyan <37798612+aprilahijriyan@users.noreply.github.com>"]
 license = "MIT"
+maintainers = ["aprilahijriyan <37798612+aprilahijriyan@users.noreply.github.com>"]
+readme = "README.md"
+homepage = "https://github.com/fastack-dev/fastack-migrate"
+repository = "https://github.com/fastack-dev/fastack-migrate"
+classifiers = [
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
 
 [tool.poetry.dependencies]
 python = ">=3.7,<4.0.0"
@@ -17,6 +36,10 @@ ipython = "^7.30.1"
 
 [tool.poetry.plugins."fastack.commands"]
 db = "fastack_migrate.cli:db"
+
+[tool.poetry.urls]
+
+"Bug Tracker" = "https://github.com/fastack-dev/fastack-migrate/issues"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
