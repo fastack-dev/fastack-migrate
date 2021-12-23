@@ -8,7 +8,6 @@ from sqlmodel import Field, Relationship
 class Category(Model, table=True):
     __table_args__ = (UniqueConstraint("name"),)
 
-    id: int = Field(primary_key=True)
     name: str = Field(max_length=150, nullable=False)
     animals: List["Animal"] = Relationship(back_populates="category")
 
@@ -25,7 +24,6 @@ class Category(Model, table=True):
 class Species(Model, table=True):
     __table_args__ = (UniqueConstraint("name"),)
 
-    id: int = Field(primary_key=True)
     name: str = Field(max_length=150, nullable=False)
     animals: List["Animal"] = Relationship(back_populates="species")
 
@@ -42,7 +40,6 @@ class Species(Model, table=True):
 class Animal(Model, table=True):
     __table_args__ = (UniqueConstraint("name"),)
 
-    id: int = Field(primary_key=True)
     name: str = Field(max_length=150, nullable=False)
     category_id: Optional[int] = Field(foreign_key="category.id", nullable=True)
     category: Optional[Category] = Relationship(back_populates="animals")

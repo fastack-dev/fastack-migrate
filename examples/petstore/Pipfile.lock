@@ -91,11 +91,11 @@
                 "sql"
             ],
             "hashes": [
-                "sha256:5b22e6349548b4daf0621ee4d3d66ba5b47ece07d6ca3f9ca03dc8880ffe393b",
-                "sha256:e8c96d3d5666d363fc57d2c965eb86f701001436c2886bf894336b86b3fc04d3"
+                "sha256:433c423e8f7be337b053542531e797643932c0a9ca5fdddf2881990bb927634d",
+                "sha256:71a5fa1f820bc9740bbe1eb46071cc728ea8a096988e992d3c1032fefb1326fe"
             ],
             "index": "pypi",
-            "version": "==2.0.0"
+            "version": "==2.0.3"
         },
         "fastack-migrate": {
             "hashes": [
