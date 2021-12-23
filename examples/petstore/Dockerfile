@@ -6,6 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 COPY ./app /space/app
+COPY ./migrations /space/migrations
 COPY ./Pipfile /space
 COPY ./Pipfile.lock /space
 
