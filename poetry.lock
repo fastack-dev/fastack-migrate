@@ -162,7 +162,7 @@ python-versions = "*"
 
 [[package]]
 name = "fastack"
-version = "2.0.0"
+version = "2.0.3"
 description = "Fastack is a blah blah blah framework!!!"
 category = "main"
 optional = false
@@ -171,7 +171,6 @@ python-versions = ">=3.7,<4.0.0"
 [package.dependencies]
 asgi-lifespan = ">=1.0.1,<2.0.0"
 fastapi = ">=0.70.1,<0.71.0"
-sqlmodel = {version = ">=0.0.5,<0.0.6", optional = true, markers = "extra == \"sql\""}
 typer = {version = ">=0.4.0,<0.5.0", extras = ["all"]}
 uvicorn = ">=0.16.0,<0.17.0"
 
@@ -179,6 +178,18 @@ uvicorn = ">=0.16.0,<0.17.0"
 sql = ["sqlmodel (>=0.0.5,<0.0.6)"]
 redis = ["aioredis (>=2.0.0,<3.0.0)"]
 nosql = ["mongoengine (>=0.23.1,<0.24.0)"]
+
+[[package]]
+name = "fastack-sqlmodel"
+version = "0.1.0"
+description = "SQLModel integration for fastack"
+category = "main"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[package.dependencies]
+fastack = ">=2.0.3,<3.0.0"
+sqlmodel = ">=0.0.5,<0.0.6"
 
 [[package]]
 name = "fastapi"
@@ -713,7 +724,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<4.0.0"
-content-hash = "2be5f797261760fc295bb820c54ce820dcf1d3aa3aa2d8e1bf6403d5c508c46f"
+content-hash = "a04943710cc09b01c85784690353579e83af146bca86fe73ad19710a74c9f2ca"
 
 [metadata.files]
 alembic = [
@@ -769,8 +780,12 @@ distlib = [
     {file = "distlib-0.3.4.zip", hash = "sha256:e4b58818180336dc9c529bfb9a0b58728ffc09ad92027a3f30b7cd91e3458579"},
 ]
 fastack = [
-    {file = "fastack-2.0.0-py3-none-any.whl", hash = "sha256:e8c96d3d5666d363fc57d2c965eb86f701001436c2886bf894336b86b3fc04d3"},
-    {file = "fastack-2.0.0.tar.gz", hash = "sha256:5b22e6349548b4daf0621ee4d3d66ba5b47ece07d6ca3f9ca03dc8880ffe393b"},
+    {file = "fastack-2.0.3-py3-none-any.whl", hash = "sha256:71a5fa1f820bc9740bbe1eb46071cc728ea8a096988e992d3c1032fefb1326fe"},
+    {file = "fastack-2.0.3.tar.gz", hash = "sha256:433c423e8f7be337b053542531e797643932c0a9ca5fdddf2881990bb927634d"},
+]
+fastack-sqlmodel = [
+    {file = "fastack-sqlmodel-0.1.0.tar.gz", hash = "sha256:0fb3b2e5201bba154f7712e6d18a7f900c387d3002273f68535e77ca8f173d14"},
+    {file = "fastack_sqlmodel-0.1.0-py3-none-any.whl", hash = "sha256:e912084ebae5131616d17233fe4cac94cfe54cd8707cd2b3b40e2521ceee87dc"},
 ]
 fastapi = [
     {file = "fastapi-0.70.1-py3-none-any.whl", hash = "sha256:5367226c7bcd7bfb2e17edaf225fd9a983095b1372281e9a3eb661336fb93748"},

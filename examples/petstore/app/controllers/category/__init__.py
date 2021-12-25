@@ -2,7 +2,7 @@ from typing import List
 
 from app.models import Category
 from fastack import CRUDController
-from fastack.plugins.sqlmodel.session import Session
+from fastack_sqlmodel.session import Session
 from fastapi import Request, Response
 from pydantic import BaseModel, conint, constr
 from sqlalchemy.sql.elements import and_

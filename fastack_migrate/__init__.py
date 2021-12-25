@@ -10,7 +10,7 @@ from alembic import command
 from alembic.config import Config as AlembicConfig
 from alembic.util import CommandError
 from fastack import Fastack
-from fastack.plugins.sqlmodel import DatabaseState
+from fastack_sqlmodel import DatabaseState
 
 alembic_version = tuple([int(v) for v in __alembic_version__.split(".")[0:3]])
 log = logging.getLogger(__name__)
@@ -108,7 +108,7 @@ def setup(app: Fastack):
             Migrate(app, db)
         except AttributeError as e:
             raise RuntimeError(
-                f"Make sure the sqlmodel plugin is on top of the migrate plugin"
+                "Make sure ``fastack-sqlmodel`` plugin is installed in your project"
             ) from e
 
     app.add_event_handler("startup", on_startup)

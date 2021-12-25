@@ -5,7 +5,7 @@ from logging.config import fileConfig
 
 from alembic import context
 from app.main import app  # noqa
-from fastack.plugins.sqlmodel import DatabaseState
+from fastack_sqlmodel import DatabaseState
 from sqlmodel import SQLModel
 
 from fastack_migrate import MigrateConfig
