@@ -38,7 +38,7 @@ class Species(models.Model, table=True):
 
 
 class Animal(models.Model, table=True):
-    __table_args__ = (UniqueConstraint("name"),)
+    # __table_args__ = (UniqueConstraint("name"),)
 
     name: str = Field(max_length=150, nullable=False)
     category_id: Optional[int] = Field(foreign_key="category.id", nullable=True)

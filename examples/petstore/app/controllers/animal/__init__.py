@@ -36,12 +36,6 @@ class AnimalController(CRUDController):
     def create(self, request: Request, body: BodyAnimalSchema) -> Response:
         session: Session = request.state.db.open()
         with session.begin():
-            animal: Animal = (
-                session.query(Animal).where(Animal.name == body.name).first()
-            )
-            if animal:
-                return self.json("Already exist", status=400)
-
             data = body.dict()
             category: Category = (
                 session.query(Category).where(Category.name == body.category).first()
