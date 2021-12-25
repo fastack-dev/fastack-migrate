@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from app.models import Animal, Category, Species
 from fastack.controller import CRUDController
-from fastack.plugins.sqlmodel.session import Session
+from fastack_sqlmodel.session import Session
 from fastapi import Request, Response
 from pydantic import BaseModel, conint, constr
 

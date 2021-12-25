@@ -1,11 +1,11 @@
 from typing import List, Optional
 
-from fastack.plugins.sqlmodel.base import Model
+from fastack_sqlmodel import models
 from sqlalchemy import UniqueConstraint
 from sqlmodel import Field, Relationship
 
 
-class Category(Model, table=True):
+class Category(models.Model, table=True):
     __table_args__ = (UniqueConstraint("name"),)
 
     name: str = Field(max_length=150, nullable=False)
@@ -21,7 +21,7 @@ class Category(Model, table=True):
         return data
 
 
-class Species(Model, table=True):
+class Species(models.Model, table=True):
     __table_args__ = (UniqueConstraint("name"),)
 
     name: str = Field(max_length=150, nullable=False)
@@ -37,7 +37,7 @@ class Species(Model, table=True):
         return data
 
 
-class Animal(Model, table=True):
+class Animal(models.Model, table=True):
     __table_args__ = (UniqueConstraint("name"),)
 
     name: str = Field(max_length=150, nullable=False)

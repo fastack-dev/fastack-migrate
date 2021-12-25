@@ -10,7 +10,7 @@ from alembic import command
 from alembic.config import Config as AlembicConfig
 from alembic.util import CommandError
 from fastack import Fastack
-from fastack.plugins.sqlmodel import DatabaseState
+from fastack_sqlmodel import DatabaseState
 
 alembic_version = tuple([int(v) for v in __alembic_version__.split(".")[0:3]])
 log = logging.getLogger(__name__)
