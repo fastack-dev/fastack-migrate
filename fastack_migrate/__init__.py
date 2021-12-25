@@ -108,7 +108,7 @@ def setup(app: Fastack):
             Migrate(app, db)
         except AttributeError as e:
             raise RuntimeError(
-                f"Make sure the sqlmodel plugin is on top of the migrate plugin"
+                "Make sure ``fastack-sqlmodel`` plugin is installed in your project"
             ) from e
 
     app.add_event_handler("startup", on_startup)
