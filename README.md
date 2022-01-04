@@ -9,14 +9,14 @@ This is a fork of [flask-migrate](https://github.com/miguelgrinberg/Flask-Migrat
 Install plugin:
 
 ```
-pip install fastack-migrate
+pip install -U fastack-migrate
 ```
 
 Add the plugin to your project configuration:
 
 ```python
 PLUGINS = [
-    "fastack.plugins.sqlmodel",
+    "fastack_sqlmodel",
     "fastack_migrate",
     ...
 ]
