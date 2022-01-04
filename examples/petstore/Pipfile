@@ -4,12 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-fastack = {extras = ["sql"], version = "*"}
-pre-commit = "*"
+fastack = ">=3.0.0"
 psycopg2-binary = "*"
-fastack-migrate = "*"
 
 [dev-packages]
+pre-commit = "*"
 
 [requires]
 python_version = "3"
