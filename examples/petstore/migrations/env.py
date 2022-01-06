@@ -5,10 +5,10 @@ from logging.config import fileConfig
 
 from alembic import context
 from app.main import app  # noqa
-from fastack_sqlmodel import DatabaseState
+from fastack_sqlmodel.globals import db
 from sqlmodel import SQLModel
 
-from fastack_migrate import MigrateConfig
+from fastack_migrate.globals import migrate
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -23,10 +23,8 @@ logger = logging.getLogger("alembic.env")
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-db: DatabaseState = app.state.db
-migrate: MigrateConfig = app.state.migrate
 
-config.set_main_option("sqlalchemy.url", str(migrate.db.engine.url).replace("%", "%%"))
+config.set_main_option("sqlalchemy.url", str(db.engine.url).replace("%", "%%"))
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -75,7 +73,7 @@ def run_migrations_online():
                 directives[:] = []
                 logger.info("No changes in schema detected.")
 
-    connectable = migrate.db.engine
+    connectable = db.engine
 
     with connectable.connect() as connection:
         context.configure(

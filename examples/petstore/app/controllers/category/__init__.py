@@ -1,7 +1,8 @@
 from typing import List
 
 from app.models import Category
-from fastack import CRUDController
+from fastack import ModelController
+from fastack_sqlmodel.globals import db
 from fastack_sqlmodel.session import Session
 from fastapi import Request, Response
 from pydantic import BaseModel, conint, constr
@@ -12,9 +13,9 @@ class BodyCategorySchema(BaseModel):
     name: constr(max_length=150)
 
 
-class CategoryController(CRUDController):
+class CategoryController(ModelController):
     def retrieve(self, request: Request, id: int) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session:
             category: Category = (
                 session.query(Category).where(Category.id == id).first()
@@ -27,7 +28,7 @@ class CategoryController(CRUDController):
     def list(
         self, request: Request, page: conint(gt=0) = 1, page_size: conint(gt=0) = 10
     ) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session:
             categories: List[Category] = (
                 session.query(Category).order_by(Category.date_created.desc()).all()
@@ -35,7 +36,7 @@ class CategoryController(CRUDController):
             return self.get_paginated_response(categories, page, page_size)
 
     def create(self, request: Request, body: BodyCategorySchema) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
             category: Category = (
                 session.query(Category).where(Category.name == body.name).first()
@@ -49,7 +50,7 @@ class CategoryController(CRUDController):
         return self.json("Created", category)
 
     def update(self, request: Request, id: int, body: BodyCategorySchema) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
             qs = (
                 session.query(Category)
@@ -72,7 +73,7 @@ class CategoryController(CRUDController):
         return self.json("Updated", category)
 
     def destroy(self, request: Request, id: int) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
             category: Category = (
                 session.query(Category).where(Category.id == id).first()

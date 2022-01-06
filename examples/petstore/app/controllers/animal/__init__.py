@@ -1,10 +1,12 @@
 from typing import List, Optional
 
 from app.models import Animal, Category, Species
-from fastack.controller import CRUDController
+from fastack.controller import ModelController
+from fastack_sqlmodel.globals import db
 from fastack_sqlmodel.session import Session
 from fastapi import Request, Response
 from pydantic import BaseModel, conint, constr
+from sqlalchemy import and_
 
 
 class BodyAnimalSchema(BaseModel):
@@ -13,9 +15,9 @@ class BodyAnimalSchema(BaseModel):
     species: Optional[constr(max_length=150)]
 
 
-class AnimalController(CRUDController):
+class AnimalController(ModelController):
     def retrieve(self, request: Request, id: int) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session:
             animal: Animal = session.query(Animal).where(Animal.id == id).first()
             if not animal:
@@ -26,7 +28,7 @@ class AnimalController(CRUDController):
     def list(
         self, request: Request, page: conint(gt=0) = 1, page_size: conint(gt=0) = 10
     ) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session:
             animals: List[Animal] = (
                 session.query(Animal).order_by(Animal.date_created.desc()).all()
@@ -34,8 +36,12 @@ class AnimalController(CRUDController):
             return self.get_paginated_response(animals, page, page_size)
 
     def create(self, request: Request, body: BodyAnimalSchema) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
+            found = bool(session.query(Animal).where(Animal.name == body.name).first())
+            if found:
+                return self.json("Already Exists", status=400)
+
             data = body.dict()
             category: Category = (
                 session.query(Category).where(Category.name == body.category).first()
@@ -57,11 +63,19 @@ class AnimalController(CRUDController):
         return self.json("Created", animal)
 
     def update(self, request: Request, id: int, body: BodyAnimalSchema) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
             animal: Animal = session.query(Animal).where(Animal.id == id).first()
             if not animal:
                 return self.json("Not Found", status=404)
+
+            found = bool(
+                session.query(Animal)
+                .where(and_(Animal.name == body.name, Animal.id != id))
+                .first()
+            )
+            if found:
+                return self.json("Already Exists", status=400)
 
             data = body.dict()
             category: Category = (
@@ -84,7 +98,7 @@ class AnimalController(CRUDController):
         return self.json("Updated", animal)
 
     def destroy(self, request: Request, id: int) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
             animal: Animal = session.query(Animal).where(Animal.id == id).first()
             if not animal:

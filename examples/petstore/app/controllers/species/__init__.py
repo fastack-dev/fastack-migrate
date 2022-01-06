@@ -1,7 +1,8 @@
 from typing import List
 
 from app.models import Species
-from fastack import CRUDController
+from fastack import ModelController
+from fastack_sqlmodel.globals import db
 from fastack_sqlmodel.session import Session
 from fastapi import Request, Response
 from pydantic import BaseModel, conint, constr
@@ -12,9 +13,9 @@ class BodySpeciesSchema(BaseModel):
     name: constr(max_length=150)
 
 
-class SpeciesController(CRUDController):
+class SpeciesController(ModelController):
     def retrieve(self, request: Request, id: int) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session:
             species: Species = session.query(Species).where(Species.id == id).first()
             if not species:
@@ -25,7 +26,7 @@ class SpeciesController(CRUDController):
     def list(
         self, request: Request, page: conint(gt=0) = 1, page_size: conint(gt=0) = 10
     ) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session:
             categories: List[Species] = (
                 session.query(Species).order_by(Species.date_created.desc()).all()
@@ -33,7 +34,7 @@ class SpeciesController(CRUDController):
             return self.get_paginated_response(categories, page, page_size)
 
     def create(self, request: Request, body: BodySpeciesSchema) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
             species: Species = (
                 session.query(Species).where(Species.name == body.name).first()
@@ -47,7 +48,7 @@ class SpeciesController(CRUDController):
         return self.json("Created", species)
 
     def update(self, request: Request, id: int, body: BodySpeciesSchema) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
             qs = (
                 session.query(Species)
@@ -68,7 +69,7 @@ class SpeciesController(CRUDController):
         return self.json("Updated", species)
 
     def destroy(self, request: Request, id: int) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
             species: Species = session.query(Species).where(Species.id == id).first()
             if not species:
