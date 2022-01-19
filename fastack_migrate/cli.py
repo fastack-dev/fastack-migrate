@@ -1,6 +1,6 @@
 from typing import List
 
-from fastack.decorators import with_asgi_lifespan
+from fastack.decorators import enable_context
 from typer import Argument, Context, Option, Typer
 
 from fastack_migrate import branches as _branches
@@ -28,7 +28,7 @@ def list_templates():
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def init(
     ctx: Context,
     directory: str = Option(
@@ -49,7 +49,7 @@ def init(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def revision(
     ctx: Context,
     directory: str = Option(
@@ -114,7 +114,7 @@ def revision(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def migrate(
     ctx: Context,
     directory: str = Option(
@@ -180,7 +180,7 @@ def migrate(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def edit(
     ctx: Context,
     directory: str = Option(
@@ -196,7 +196,7 @@ def edit(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def merge(
     ctx: Context,
     directory: str = Option(
@@ -223,7 +223,7 @@ def merge(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def upgrade(
     ctx: Context,
     directory: str = Option(
@@ -256,7 +256,7 @@ def upgrade(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def downgrade(
     ctx: Context,
     directory: str = Option(
@@ -289,7 +289,7 @@ def downgrade(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def show(
     ctx: Context,
     directory: str = Option(
@@ -305,7 +305,7 @@ def show(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def history(
     ctx: Context,
     directory: str = Option(
@@ -336,7 +336,7 @@ def history(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def heads(
     ctx: Context,
     directory: str = Option(
@@ -360,7 +360,7 @@ def heads(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def branches(
     ctx: Context,
     directory: str = Option(
@@ -378,7 +378,7 @@ def branches(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def current(
     ctx: Context,
     directory: str = Option(
@@ -396,7 +396,7 @@ def current(
 
 
 @db.command()
-@with_asgi_lifespan
+@enable_context()
 def stamp(
     ctx: Context,
     directory: str = Option(
