@@ -227,11 +227,11 @@ python-versions = "*"
 
 [[package]]
 name = "fastack"
-version = "4.0.0"
+version = "4.5.0"
 description = "fastack is an intuitive framework based on FastAPI"
 category = "main"
 optional = false
-python-versions = ">=3.7,<3.10"
+python-versions = ">=3.7,<4.0.0"
 
 [package.dependencies]
 asgi-lifespan = ">=1.0.1,<2.0.0"
@@ -239,7 +239,6 @@ cookiecutter = ">=1.7.3,<2.0.0"
 fastapi = ">=0.72.0,<0.73.0"
 typer = ">=0.4.0,<0.5.0"
 uvicorn = {version = ">=0.16.0,<0.17.0", extras = ["standard"]}
-Werkzeug = ">=2.0.2,<3.0.0"
 
 [[package]]
 name = "fastack-sqlmodel"
@@ -918,17 +917,6 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
-name = "werkzeug"
-version = "2.0.2"
-description = "The comprehensive WSGI web application library."
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.extras]
-watchdog = ["watchdog"]
-
-[[package]]
 name = "zipp"
 version = "3.6.0"
 description = "Backport of pathlib-compatible object wrapper for zip files"
@@ -943,7 +931,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<3.10"
-content-hash = "8873216c7bd80750a5219b10795f426499dc38e1151a3f99b1bb9d3f61f72db8"
+content-hash = "545c03cf8630a53fd3ce0455752fd9b9f34faceada545e56518e564d1524b1b2"
 
 [metadata.files]
 alembic = [
@@ -1023,8 +1011,8 @@ distlib = [
     {file = "distlib-0.3.4.zip", hash = "sha256:e4b58818180336dc9c529bfb9a0b58728ffc09ad92027a3f30b7cd91e3458579"},
 ]
 fastack = [
-    {file = "fastack-4.0.0-py3-none-any.whl", hash = "sha256:49c7cb01c9da1a1d68d24b7ecfb7e23f57a1a23dafdfd10d4da336528c5de9d6"},
-    {file = "fastack-4.0.0.tar.gz", hash = "sha256:d6b7a43497a7e08b1f922b5091363e0415c5b41043696cb642a153d3c9c08af8"},
+    {file = "fastack-4.5.0-py3-none-any.whl", hash = "sha256:65aab90c9ff680dbed30f8011dd73150a43986ba61d5fe159058d05e1eff1f2c"},
+    {file = "fastack-4.5.0.tar.gz", hash = "sha256:d09f55bedb8fc280fe45b507d0b85a790c94493f5ca2a62c1fb5b7a2bd6643ff"},
 ]
 fastack-sqlmodel = [
     {file = "fastack-sqlmodel-0.4.0.tar.gz", hash = "sha256:ab1b481783cb2f43ea4697ea9168a51544fb9aa3d3febba00914a0110bb8bad0"},
@@ -1548,10 +1536,6 @@ websockets = [
     {file = "websockets-10.1-pp37-pypy37_pp73-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:816ae7dac2c6522cfa620947ead0ca95ac654916eebf515c94d7c28de5601a6e"},
     {file = "websockets-10.1-pp37-pypy37_pp73-win_amd64.whl", hash = "sha256:1dafe98698ece09b8ccba81b910643ff37198e43521d977be76caf37709cf62b"},
     {file = "websockets-10.1.tar.gz", hash = "sha256:181d2b25de5a437b36aefedaf006ecb6fa3aa1328ec0236cdde15f32f9d3ff6d"},
-]
-werkzeug = [
-    {file = "Werkzeug-2.0.2-py3-none-any.whl", hash = "sha256:63d3dc1cf60e7b7e35e97fa9861f7397283b75d765afcaefd993d6046899de8f"},
-    {file = "Werkzeug-2.0.2.tar.gz", hash = "sha256:aa2bb6fc8dee8d6c504c0ac1e7f5f7dc5810a9903e793b6f715a9f015bdadb9a"},
 ]
 zipp = [
     {file = "zipp-3.6.0-py3-none-any.whl", hash = "sha256:9fe5ea21568a0a70e50f273397638d39b03353731e6cbbb3fd8502a33fec40bc"},
